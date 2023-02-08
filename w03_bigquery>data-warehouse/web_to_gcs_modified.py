@@ -13,7 +13,7 @@ Pre-reqs:
 """
 
 # services = ['fhv','green','yellow']
-init_url = 'https://nyc-tlc.s3.amazonaws.com/trip+data/'
+init_url = "https://github.com/DataTalksClub/nyc-tlc-data/releases/download/fhv/"
 # switch out the bucketname
 BUCKET = os.environ.get("GCP_GCS_BUCKET", "datalake-w03")
 
@@ -31,24 +31,22 @@ def upload_to_gcs(bucket, object_name, local_file):
 
 def web_to_gcs(year, service):
     for i in range(12):
-        
         # sets the month part of the file_name string
-        month = '0'+str(i+1)
+        month = "0" + str(i + 1)
         month = month[-2:]
 
-        # csv file_name 
-        file_name = service + '_tripdata_' + year + '-' + month + '.csv'
+        # csv file_name
+        file_name = service + "_tripdata_" + year + "-" + month + ".csv"
 
         # download it using requests
-        request_url = init_url + file_name + '.gz'
+        request_url = init_url + file_name + ".gz"
         r = requests.get(request_url)
-        open(file_name + '.gz', 'wb').write(r.content)
+        open(file_name + ".gz", "wb").write(r.content)
         print(f"Local: {file_name + '.gz'}")
 
-        # upload it to gcs 
-        upload_to_gcs(BUCKET, f"{service}/{file_name + '.gz'}", file_name + '.gz')
+        # upload it to gcs
+        upload_to_gcs(BUCKET, f"{service}/{file_name + '.gz'}", file_name + ".gz")
         print(f"GCS: {service}/{file_name + '.gz'}")
 
 
-web_to_gcs('2019', 'fhv')
-
+web_to_gcs("2019", "fhv")
