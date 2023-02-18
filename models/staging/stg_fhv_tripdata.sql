@@ -20,7 +20,7 @@ select
 
     -- trip info
     sr_flag,
-from {{ source('staging','fhv_tripdata_clustered') }}
+from {{ source('staging','fhv_tripdata') }}
 where dispatching_base_num is not null 
 
 {% if var('is_test_run', default=true) %}
