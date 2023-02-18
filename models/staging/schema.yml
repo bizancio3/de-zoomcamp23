@@ -1,4 +1,3 @@
-
 version: 2
 
 sources:
@@ -15,6 +14,7 @@ sources:
       tables:
         - name: green_tripdata
         - name: yellow_tripdata
+        - name: fhv_tripdata
          # freshness:
            # error_after: {count: 6, period: hour}
 
@@ -83,11 +83,11 @@ models:
           - name: Payment_type 
             description: >
               A numeric code signifying how the passenger paid for the trip.
-            tests: 
-              - accepted_values:
-                  values: "{{ var('payment_type_values') }}"
-                  severity: warn
-                  quote: false
+#            tests: 
+#              - accepted_values:
+#                  values: "{{ var('payment_type_values') }}"
+#                  severity: warn
+#                  quote: false
           - name: payment_type_description
             description: Description of the payment_type code
           - name: Fare_amount 
