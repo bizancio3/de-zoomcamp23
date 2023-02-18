@@ -7,6 +7,7 @@
 --   from {{ source('staging','fhv_tripdata') }}
 --   where dispatching_base_num is not null 
 -- )
+
 select
     -- identifiers
     {{ dbt_utils.surrogate_key(['dispatching_base_num', 'pickup_datetime']) }} as tripid,
