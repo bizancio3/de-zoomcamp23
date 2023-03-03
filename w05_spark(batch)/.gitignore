@@ -1,0 +1,8 @@
+*.csv
+*.csv.gz
+
+code/fhvhv/
+code/zones/
+.ipynb_checkpoints/
+
+fhvhv/
